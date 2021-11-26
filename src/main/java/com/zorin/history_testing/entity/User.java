@@ -25,12 +25,12 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message = "Имя должно быть заполненно!")
-    @Size(min = 2, max = 30, message = "Длинна имени должна быть от 2 до 30 символов")
+    @NotBlank(message = "Логин должен быть заполнен!")
+    @Size(min = 2, max = 30, message = "Длина имени должна быть от 2 до 30 символов")
     private String username;
 
     @NotBlank(message = "Пароль должен быть заполнен!")
-    @Size(min = 4, max = 30, message = "Длинна пароля должна быть от 4 до 20 символов")
+    @Size(min = 4, max = 30, message = "Длина пароля должна быть от 4 до 20 символов")
     private String password;
     private boolean active;
 
@@ -39,6 +39,10 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     @NotEmpty(message = "Должна быть выбрана хотя бы одна роль!")
     private Set<Role> roles;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "info_id")
+    private UserInfo idUserInfo;
 
     public User() {
         roles= Collections.singleton(Role.USER);

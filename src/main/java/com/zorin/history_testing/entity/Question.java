@@ -3,6 +3,7 @@ package com.zorin.history_testing.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 /**
  * @author Zorin Sergey
@@ -17,6 +18,7 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
 
     @Column(name = "question_text")
     private String questionText;

@@ -1,0 +1,26 @@
+
+.login-card {
+    background: rgba(46, 45, 43, 0.4);
+    height: 300px;
+    width: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.login-form {
+    width: 400px;
+}
+
+
+
+body {
+    background-image: url('https://images.pexels.com/photos/220201/pexels-photo-220201.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+}
+
+.card-header {
+    color: lightgray;
+}
