@@ -30,8 +30,8 @@ public class UserService implements UserDetailsService {
         return userRep.findByUsername(username);
     }
 
-    public User getCurrentUser(Principal principal) {
 
+    public User getCurrentUser(Principal principal) {
         return ((User) SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getPrincipal());
@@ -51,26 +51,3 @@ public class UserService implements UserDetailsService {
 
 
 }
-
-
-//    public void updateUser(User user, String newName, Set<String> form){
-//
-//        if (userRep.findByUsername(newName)==null){
-//            user.setUsername(newName);
-//        }
-//
-//        Set<String> roles = Arrays.stream(Role.values()).map(Role::name).collect(Collectors.toSet());
-//        user.getRoles().clear();
-//
-//        for (String formRole : form) {
-//            if(roles.contains(formRole)){
-//                user.getRoles().add(Role.valueOf(formRole));
-//            }
-//        }
-//
-//        if(!(user.getRoles().contains(Role.USER))){
-//            user.getRoles().add(Role.USER);
-//        }
-//
-//        userRep.save(user);
-//    }

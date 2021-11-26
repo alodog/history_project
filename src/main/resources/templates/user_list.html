@@ -24,7 +24,12 @@
     <tr>
         <td th:text="${user.getUsername()}">Name</td>
         <td th:text="${#strings.setJoin(user.roles, ', ')}">Roles</td>
-        <td><a th:href="@{/admin/users/{id}(id=${user.getId()})}">edit</a></td>
+        <td><a role="button" th:href="@{/admin/users/{id}(id=${user.getId()})}">edit</a></td>
+        <td>
+        <form method="post" th:action="@{/admin/users/delete/{id}(id=${user.getId()})}">
+            <input type="submit" value="Delete">
+        </form>
+        </td>
     </tr>
     </tbody>
 </table>

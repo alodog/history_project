@@ -45,6 +45,12 @@ public class AdminController {
         return "user_edit";
     }
 
+    @PostMapping("/users/delete/{id}")
+    public String deleteUser(@PathVariable("id") int id ){
+        userRep.deleteById(id);
+        return "redirect:/admin/users";
+    }
+
     @PostMapping ("/users/{id}")
     public String updateUser(@ModelAttribute ("user") @Valid User user,
                              BindingResult bindingResult,
@@ -64,30 +70,3 @@ public class AdminController {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-//    @PostMapping("/users")
-//    public String updateUser(@RequestParam("userName") @Valid String userName,
-//                             @RequestParam ("userId") int id,
-//                             @RequestParam(value = "roles", required = false) Set< String> form) {
-////        if(bindingResult.hasErrors()){
-////            return "user_edit";
-////        }
-//        User user = userRep.getById(id);
-//
-//        if (form!=null){
-//             userService.updateUser(user, userName, form);
-//        } else {
-//             form = user.getRoles().stream().map(Enum::name).collect(Collectors.toSet());
-//             userService.updateUser(user, userName, form);
-//        }
-//        return "redirect:/admin/users";
-//    }

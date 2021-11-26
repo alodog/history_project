@@ -1,8 +1,10 @@
 package com.zorin.history_testing.controller;
 
+import com.zorin.history_testing.dao.UserInfoRep;
 import com.zorin.history_testing.dao.UserRep;
 import com.zorin.history_testing.entity.Role;
 import com.zorin.history_testing.entity.User;
+import com.zorin.history_testing.entity.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,26 +28,29 @@ public class RegistrationController {
     @Autowired
     private UserRep userRep;
 
+    @Autowired
+    private UserInfoRep userInfoRep;
+
     @GetMapping("/registration")
-    public String registration(@ModelAttribute("user") User user){
+    public String registration(@ModelAttribute("user") User user, @ModelAttribute("userInfo") UserInfo userInfo){
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String addUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
+    public String addUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model,
+                          @ModelAttribute("userInfo") @Valid UserInfo userInfo, BindingResult bindingResultInfo){
+        if(bindingResult.hasErrors() || bindingResultInfo.hasErrors()){
             return "registration";
         }
-
         if(userRep.findByUsername(user.getUsername()) != null){
             model.addAttribute("message", "This Username exists!");
             return "registration";
         }
         user.setActive(true);
-        user.setRoles(Collections.singleton(Role.USER));
+        user.setIdUserInfo(userInfo);
+        userInfoRep.save(userInfo);
         userRep.save(user);
         return "redirect:/login";
     }
-
 
 }

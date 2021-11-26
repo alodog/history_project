@@ -15,23 +15,56 @@
 Add new user
 <p th:if="${message}" th:text="${message}">TEXT</p>
 
-<form th:method="POST" th:action="@{/registration}" th:object="${user}">
 
+
+<form th:method="POST" th:action="@{/registration}" >
     <div>
         <label for="username"> Please create User Name :  </label>
-        <input type="text" th:field="*{username}" id="username" placeholder="Full Name">
-        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        <input type="text" th:field="${user.username}" id="username" placeholder="Full Name">
+        <div th:if="${#fields.hasErrors('user.username')}" th:errors="${user.username}"></div>
     </div>
 
     <div>
         <label for="password"> Please create Password :  </label>
-        <input type="text" th:field="*{password}" id="password" name="password" placeholder="Password">
-        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        <input type="text" th:field="${user.password}" id="password" name="password" placeholder="Password">
+        <div th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}"></div>
+    </div>
+
+    <div>
+        <label for="firsName"> Имя :  </label>
+        <input type="text" th:field="${userInfo.firstName}" id="firsName" placeholder="firsName">
+        <div th:if="${#fields.hasErrors('userInfo.firstName')}" th:errors="${userInfo.firstName}"></div>
+    </div>
+
+    <div>
+        <label for="surname"> Имя :  </label>
+        <input type="text" th:field="${userInfo.surname}" id="surname" placeholder="surname">
+        <div th:if="${#fields.hasErrors('userInfo.surname')}" th:errors="${userInfo.surname}"></div>
     </div>
 
     <!--    <div><label> Please create Password:  </label></div>-->
     <div><input type="submit" value="Register"/></div>
+
 </form>
+
+
+<!--<form th:method="POST" th:action="@{/registration}" th:object="${user}">-->
+<!--    <div>-->
+<!--        <label for="username"> Please create User Name :  </label>-->
+<!--        <input type="text" th:field="*{username}" id="username" placeholder="Full Name">-->
+<!--        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--        <label for="password"> Please create Password :  </label>-->
+<!--        <input type="text" th:field="*{password}" id="password" name="password" placeholder="Password">-->
+<!--        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash;    <div><label> Please create Password:  </label></div>&ndash;&gt;-->
+<!--    <div><input type="submit" value="Register"/></div>-->
+
+<!--</form>-->
 
 
 </body>
