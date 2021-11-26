@@ -4,11 +4,13 @@ import com.zorin.history_testing.dao.UserRep;
 import com.zorin.history_testing.entity.Role;
 import com.zorin.history_testing.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,6 +30,12 @@ public class UserService implements UserDetailsService {
         return userRep.findByUsername(username);
     }
 
+    public User getCurrentUser(Principal principal) {
+
+        return ((User) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal());
+    }
 
     public void updateUser(int id, User user) {
         User userFromDB = userRep.getById(id);

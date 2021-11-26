@@ -18,6 +18,7 @@ import javax.validation.Valid;
  */
 @Controller
 @RequestMapping("/admin")
+@PreAuthorize("hasAnyAuthority('ADMIN', 'MAINADMIN')")
 public class AdminController {
 
     @Autowired
