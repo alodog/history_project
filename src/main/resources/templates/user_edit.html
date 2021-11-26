@@ -5,20 +5,49 @@
     <title>Title</title>
 </head>
 <body>
+
+
 <h3>User editor</h3>
 <br><br>
-<!--<form th:method="PATCH" th:action="@{/user}" th:object="${user}">-->
-<!--    <label for="name">Enter id:</label>-->
-<!--    <input type="text" th:field="*{id}" id="name" >-->
-<!--    <div th:each="role: *{roles}">-->
-<!--        <label for="role" th:text="${role}">Role</label>-->
-<!--        <input type="checkbox" id="role" th:value="${role}" >-->
-<!--    </div>-->
-<!--    <button type="submit">Save</button>-->
-<!--</form>-->
 
+<form method="post" th:action="@{/admin/users/{id}(id=${user.getId()})}" th:object="${user}">
+    <p th:if="${message}" th:text="${message}">TEXT</p>
+    <div>
+        <label for="username">Enter Name :  </label>
+        <input type="text" th:field="*{username}" th:value="*{username}" id="username">
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+    </div>
 
+    <div th:each="role : ${T(com.zorin.history_testing.entity.Role).values()}">
+        <label th:for="${role}" th:text="${role}"></label>
+        <input type="checkbox" th:checked="${#lists.contains(user.roles, role)}" th:value="${role}" th:field="*{roles}">
+    </div>
+    <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
 
+    <input type="hidden" th:value="*{password}" th:field="*{password}" name="password">
+    <input type="hidden" th:value="*{id}" th:field="*{id}" name="userId">
+
+    <button type="submit">Save</button>
+</form>
 
 </body>
 </html>
+
+
+
+
+
+
+
+<!--    1<label for="userName">Enter name:</label>-->
+<!--    <input type="text" th:value="*{username}" id="userName" name="userName" >-->
+
+<!--    <div th:each="role : ${allRoles}">-->
+<!--        <label th:for="${role}" th:text="${role}"></label>-->
+<!--        <input type="checkbox" th:checked="${#lists.contains(user.roles, role)}" name="roles"  th:value="${role}">-->
+<!--    </div>-->
+
+<!--    <div th:each="role: ${allRoles}">-->
+<!--        <label for="role" th:text="${role}">Role</label>-->
+<!--        <input type="checkbox" id="role" name="roles" th:value="${role}">-->
+<!--    </div>-->

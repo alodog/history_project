@@ -14,10 +14,24 @@
 
 Add new user
 <p th:if="${message}" th:text="${message}">TEXT</p>
-<form th:action="@{/registration}" method="post">
-    <div><label> Please create User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Please create Password: <input type="password" name="password"/> </label></div>
+
+<form th:method="POST" th:action="@{/registration}" th:object="${user}">
+
+    <div>
+        <label for="username"> Please create User Name :  </label>
+        <input type="text" th:field="*{username}" id="username" placeholder="Full Name">
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+    </div>
+
+    <div>
+        <label for="password"> Please create Password :  </label>
+        <input type="text" th:field="*{password}" id="password" name="password" placeholder="Password">
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+    </div>
+
+    <!--    <div><label> Please create Password:  </label></div>-->
     <div><input type="submit" value="Register"/></div>
 </form>
+
 </body>
 </html>
