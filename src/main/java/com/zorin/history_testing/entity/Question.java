@@ -21,18 +21,23 @@ public class Question {
 
 
     @Column(name = "question_text")
+    @NotBlank(message = "Поле не должно быть пустым!")
     private String questionText;
 
     @Column(name = "true_answer")
+    @NotBlank(message = "Поле не должно быть пустым!")
     private String trueAnswer;
 
     @Column(name = "wrong_answer0")
+    @NotBlank(message = "Поле не должно быть пустым!")
     private String wrongAnswer0;
 
     @Column(name = "wrong_answer1")
+    @NotBlank(message = "Поле не должно быть пустым!")
     private String wrongAnswer1;
 
     @Column(name = "wrong_answer2")
+    @NotBlank(message = "Поле не должно быть пустым!")
     private String wrongAnswer2;
 
     public Question() {

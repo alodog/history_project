@@ -42,7 +42,11 @@ public class User implements UserDetails {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "info_id")
-    private UserInfo idUserInfo;
+    private UserInfo userInfo;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "result_id")
+    private Result result;
 
     public User() {
         roles= Collections.singleton(Role.USER);

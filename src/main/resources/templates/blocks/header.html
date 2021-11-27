@@ -1,5 +1,5 @@
 <div th:fragment="header" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark " style="background-color: #141310;">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark mb-5 " style="background-color: #141310;">
     <div class="container">
       <a href="" class="navbar-brand">
         <img th:src="@{/img/H.jpg}" width="40" height="40" alt="" loading="eager">
@@ -17,7 +17,7 @@
             <a href="/profile" class="nav-link">Профиль</a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">Пройти тест</a>
+            <a href="/test" class="nav-link">Пройти тест</a>
           </li>
 
 
@@ -28,7 +28,9 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                 <li><a class="dropdown-item" href="/admin/users/">Данные пользователей</a></li>
-                <li><a class="dropdown-item" href="#">Результаты тестирования</a></li>
+                <li><a class="dropdown-item" href="#">Результаты тестирования пользователей</a></li>
+                <li><a class="dropdown-item" href="/questions/add">Добавить вопрос</a></li>
+                <li><a class="dropdown-item" href="/questions">Список всех вопросов</a></li>
               </ul>
             </li>
           </div>

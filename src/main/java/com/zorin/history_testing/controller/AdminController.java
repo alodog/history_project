@@ -1,5 +1,6 @@
 package com.zorin.history_testing.controller;
 
+import com.zorin.history_testing.dao.UserInfoRep;
 import com.zorin.history_testing.dao.UserRep;
 import com.zorin.history_testing.entity.Role;
 import com.zorin.history_testing.entity.User;
@@ -25,6 +26,8 @@ public class AdminController {
     private UserRep userRep;
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserInfoRep userInfoRep;
 
     @GetMapping
     public String mainAdminPage(){
@@ -68,5 +71,7 @@ public class AdminController {
         userService.updateUser(id, user);
         return "redirect:/admin/users";
     }
+
+
 }
 

@@ -10,28 +10,49 @@
 <h3>User editor</h3>
 <br><br>
 
-<form method="post" th:action="@{/admin/users/{id}(id=${user.getId()})}" th:object="${user}">
+<form method="post" th:action="@{/admin/users/{id}(id=${user.getId()})}">
     <p th:if="${message}" th:text="${message}">TEXT</p>
     <div>
-        <label for="username">Enter Name :  </label>
-        <input type="text" th:field="*{username}" th:value="*{username}" id="username">
-        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        <label for="username"> Please create User Name :  </label>
+        <input type="text" th:field="${user.username}" id="username" th:value="${user.username}">
+        <div th:if="${#fields.hasErrors('user.username')}" th:errors="${user.username}"></div>
     </div>
+
+    <div>
+        <label for="firsName"> Имя :  </label>
+        <input type="text" th:field="${user.userInfo.firstName}" id="firsName" th:value="${user.userInfo.firstName}">
+        <div th:if="${#fields.hasErrors('user.userInfo.firstName')}" th:errors="${user.userInfo.firstName}"></div>
+    </div>
+
+    <div>
+        <label for="surname"> Имя :  </label>
+        <input type="text" th:field="${user.userInfo.surname}" id="surname" th:value="${user.userInfo.surname}">
+                <div th:if="${#fields.hasErrors('user.userInfo.surname')}" th:errors="${user.userInfo.surname}"></div>
+    </div>
+
+
 
     <div th:each="role : ${T(com.zorin.history_testing.entity.Role).values()}">
         <label th:for="${role}" th:text="${role}"></label>
-        <input type="checkbox" th:checked="${#lists.contains(user.roles, role)}" th:value="${role}" th:field="*{roles}">
+        <input type="checkbox" th:checked="${#lists.contains(user.roles, role)}" th:value="${role}" th:field="${user.roles}">
     </div>
-    <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
+        <div th:if="${#fields.hasErrors('user.roles')}" th:errors="${user.roles}"></div>
 
-    <input type="hidden" th:value="*{password}" th:field="*{password}" name="password">
-    <input type="hidden" th:value="*{id}" th:field="*{id}" name="userId">
+
+
+
+    <input type="hidden" th:value="${user.password}" th:field="${user.password}" name="password">
+    <input type="hidden" th:value="*{user.id}" th:field="*{user.id}" name="userId">
 
     <button type="submit">Save</button>
 </form>
 
 </body>
 </html>
+
+
+
+
 
 
 
