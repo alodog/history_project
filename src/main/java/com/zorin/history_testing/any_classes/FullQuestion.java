@@ -25,8 +25,8 @@ public class FullQuestion {
 
     public FullQuestion(Question question) {
         questionText = question.getQuestionText();
-        answers = new ArrayList<>();
         trueAnswer = question.getTrueAnswer();
+        answers = new ArrayList<>();
         answers.add(trueAnswer);
         answers.add(question.getWrongAnswer0());
         answers.add(question.getWrongAnswer1());

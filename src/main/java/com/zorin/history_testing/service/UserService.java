@@ -66,4 +66,16 @@ public class UserService implements UserDetailsService {
     }
 
 
+    public void updateProfile(int id, User user) {
+        User userFromDB = userRep.getById(id);
+        UserInfo userInfoFromDB = userFromDB.getUserInfo();
+        if (userRep.findByUsername(user.getUsername())==null){
+            userFromDB.setUsername(user.getUsername());
+        }
+        userInfoFromDB.setFirstName(user.getUserInfo().getFirstName());
+        userInfoFromDB.setSurname(user.getUserInfo().getSurname());
+        userInfoFromDB.setFirstName(user.getUserInfo().getFirstName());
+        userInfoRep.save(userInfoFromDB);
+        userRep.save(userFromDB);
+    }
 }

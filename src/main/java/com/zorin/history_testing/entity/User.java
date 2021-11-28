@@ -44,9 +44,7 @@ public class User implements UserDetails {
     @JoinColumn(name = "info_id")
     private UserInfo userInfo;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "result_id")
-    private Result result;
+    private String result;
 
     public User() {
         roles= Collections.singleton(Role.USER);
@@ -78,4 +76,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return isActive();
     }
+
 }

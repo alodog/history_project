@@ -1,6 +1,7 @@
 package com.zorin.history_testing.service;
 
 import com.zorin.history_testing.any_classes.FullQuestion;
+import com.zorin.history_testing.any_classes.FullUsersTestResult;
 import com.zorin.history_testing.dao.QuestionRep;
 import com.zorin.history_testing.entity.Question;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class QuestionServiceImp implements QuestionService{
 
     @Autowired
     QuestionRep questionRep;
+    @Autowired
+    TestService testService;
 
     public QuestionServiceImp() {
     }
@@ -39,7 +42,12 @@ public class QuestionServiceImp implements QuestionService{
         List<Question> allQuestions =new ArrayList<>();
                 questionRep.findAll().forEach(allQuestions::add);
         Collections.shuffle(allQuestions);
-        List<FullQuestion> randomQuestions = allQuestions.stream().limit(10).map(FullQuestion::new).collect(Collectors.toList());
+        List<FullQuestion> randomQuestions = allQuestions.stream().limit(5).map(FullQuestion::new).collect(Collectors.toList());
+        testService.setFullQuestions(randomQuestions);
         return randomQuestions;
     }
+
+
+
+
 }

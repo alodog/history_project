@@ -1,5 +1,5 @@
 
-.login-card {
+.card-login {
     background: rgba(46, 45, 43, 0.4);
     height: 300px;
     width: 500px;
@@ -7,7 +7,15 @@
     align-items: center;
 }
 
-.login-form {
+.card-registration {
+    background: rgba(56, 56, 53, 0.4);
+    height: 500px;
+    width: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.form {
     width: 400px;
 }
 
