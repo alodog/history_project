@@ -35,6 +35,11 @@
             </div>
 
             <div class="mb-3 ms-3 col-sm-6 d-flex ">
+                <label for="surname" class="text form-label col-sm-3">  Ваши роли:  </label>
+                <div class="text align-self-center" th:text="*{roles}"></div>
+            </div>
+
+            <div class="mb-3 ms-3 col-sm-6 d-flex ">
                 <label for="surname" class="text form-label col-sm-3">  Результат тестирования:  </label>
                 <div class="text align-self-center" th:text="*{result}"></div>
             </div>

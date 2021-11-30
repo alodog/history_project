@@ -13,28 +13,31 @@
 <h3>User page</h3>
 <main class="container my-5">
 
-<table>
-    <thead>
+    <table class="table table-bordered table-striped table-hover align-middle table-sm text-center"  >
+<!---->
+    <thead thead class="table-primary">
     <tr>
-        <th>Вопрос</th>
-        <th>Верный ответ</th>
-        <th>Ошибочный ответ 1</th>
-        <th>Ошибочный ответ 2</th>
-        <th>Ошибочный ответ 3</th>
-        <th></th>
+        <th style="width: 5%">Id</th>
+        <th style="width: 20%">Вопрос</th>
+        <th style="width: 15%">Правильный ответ</th>
+        <th style="width: 15%">Ошибочный ответ 1</th>
+        <th style="width: 15%">Ошибочный ответ 2</th>
+        <th style="width: 15%">Ошибочный ответ 3</th>
+        <th style="width: 10%">Доступные действия</th>
     </tr>
     </thead>
     <tbody th:each="question : ${questions}">
     <tr>
+        <td th:text="${question.id}">Id</td>
         <td th:text="${question.questionText}">Вопрос</td>
-        <td th:text="${question.trueAnswer}">Вопрос</td>
-        <td th:text="${question.wrongAnswer0}">Вопрос</td>
-        <td th:text="${question.wrongAnswer1}">Вопрос</td>
-        <td th:text="${question.wrongAnswer2}">Вопрос</td>
-        <td><a role="button" th:href="@{/questions/{id}(id=${question.getId()})}">Редактировать</a></td>
-        <td>
+        <td th:text="${question.trueAnswer}">Правильный ответ</td>
+        <td th:text="${question.wrongAnswer0}">Неправильный ответ №1</td>
+        <td th:text="${question.wrongAnswer1}">Неправильный ответ №1</td>
+        <td th:text="${question.wrongAnswer2}">Неправильный ответ №1</td>
+        <td >
+            <a class="btn btn-primary my-2 d-flex justify-content-center col-11 mx-auto" th:href="@{/questions/{id}(id=${question.getId()})}">Редактировать</a>
             <form method="post" th:action="@{/questions/delete/{id}(id=${question.getId()})}">
-                <input type="submit" value="Delete">
+                <input class="btn btn-danger col-11 d-flex justify-content-around mx-auto"  type="submit" value="Удалить">
             </form>
         </td>
     </tr>

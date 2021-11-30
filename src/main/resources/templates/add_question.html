@@ -15,31 +15,31 @@
         <form th:method="POST" th:action="@{/questions}" th:object="${question}">
 
             <div class="mb-3 ms-3 col-sm-9 d-flex justify-content-center">
-                <label for="Question" class="form-label col-sm-2 align-self-center"> Введите вопрос :  </label>
+                <label for="Question" class="form-label col-sm-3 fw-bold align-self-center"> Введите вопрос :  </label>
                 <input type="text" class="form-control ms-1" th:field="*{questionText}" id="Question" placeholder="Вопрос" required>
                 <div th:if="${#fields.hasErrors('questionText')}" th:errors="*{questionText}"></div>
             </div>
 
             <div class="mb-3 ms-3 col-sm-9 d-flex justify-content-center">
-                <label for="TrueAnswer" class="form-label col-sm-2 align-self-center"> Введите верный ответ:  </label>
+                <label for="TrueAnswer" class="form-label col-sm-3 fw-bold align-self-center"> Введите верный ответ:  </label>
                 <input type="text" class="form-control ms-1" th:field="*{trueAnswer}" id="TrueAnswer" placeholder="Правильный ответ" required>
                 <div th:if="${#fields.hasErrors('trueAnswer')}" th:errors="*{trueAnswer}"></div>
             </div>
 
             <div class="mb-3 ms-3 col-sm-9 d-flex justify-content-center">
-                <label for="wrongAnswer0" class="form-label col-sm-2 align-self-center"> Введите верный ответ:  </label>
+                <label for="wrongAnswer0" class="form-label col-sm-3 fw-bold align-self-center"> Введите неправильный ответ №1:  </label>
                 <input type="text" class="form-control ms-1" th:field="*{wrongAnswer0}" id="wrongAnswer0" placeholder="Неправильный ответ №1" required>
                 <div th:if="${#fields.hasErrors('wrongAnswer0')}" th:errors="*{wrongAnswer0}"></div>
             </div>
 
             <div class="mb-3 ms-3 col-sm-9 d-flex justify-content-center align-self-center">
-                <label for="wrongAnswer1" class="form-label col-sm-2 align-self-center"> Введите верный ответ:  </label>
+                <label for="wrongAnswer1" class="form-label col-sm-3 fw-bold align-self-center"> Введите неправильный ответ №2:  </label>
                 <input type="text" class="form-control ms-1" th:field="*{wrongAnswer1}" id="wrongAnswer1" placeholder="Неправильный ответ №2" required>
                 <div th:if="${#fields.hasErrors('wrongAnswer1')}" th:errors="*{wrongAnswer1}"></div>
             </div>
 
             <div class="mb-3 ms-3 col-sm-9 d-flex justify-content-center">
-                <label for="wrongAnswer2" class="form-label col-sm-2 align-self-center"> Введите верный ответ:  </label>
+                <label for="wrongAnswer2" class="form-label fw-bold col-sm-3 align-self-center"> Введите неправильный ответ №3:  </label>
                 <input type="text" class="form-control ms-1" th:field="*{wrongAnswer2}" id="wrongAnswer2" placeholder="Неправильный ответ №3" required>
                 <div th:if="${#fields.hasErrors('wrongAnswer2')}" th:errors="*{wrongAnswer2}"></div>
             </div>

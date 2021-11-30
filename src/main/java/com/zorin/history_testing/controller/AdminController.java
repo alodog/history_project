@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author Zorin Sergey
@@ -35,10 +36,24 @@ public class AdminController {
     }
 
     @GetMapping("/users")
-    public String userList(Model model){
-        model.addAttribute("users", userRep.findAll());
+    public String userList( @RequestParam(value = "research", defaultValue = "") String research, Model model){
+
+
+        if(research.isEmpty()){
+            model.addAttribute("users", userRep.findAll());
+            return "user_list";
+        }
+        List<User> usersBySurname = userService.listUsersBySurname(research);
+        model.addAttribute("users", usersBySurname);
+        model.addAttribute("research", research);
         return "user_list";
     }
+
+//    @GetMapping("/users/find")
+//    public String searchUsersBySurname(@RequestParam("research") String research, Model model){
+
+//    }
+
 
     @GetMapping("/users/{id}")
     public String userEditForm(@PathVariable("id") int id, Model model){
@@ -54,7 +69,7 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    @PostMapping ("/users/{id}")
+    @PostMapping ("/users/edit/{id}")
     public String updateUser(@ModelAttribute ("user") @Valid User user,
                              BindingResult bindingResult,
                              @PathVariable("id") int id,

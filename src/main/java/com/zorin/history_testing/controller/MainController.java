@@ -46,6 +46,7 @@ public class MainController {
 
     @GetMapping("/")
     public String starterPage(Model model){
+        model.addAttribute("research", "");
         return "starter_page";
     }
 
@@ -83,7 +84,8 @@ public class MainController {
             user.setResult("Вы еще не проходили тест!");
         }
         model.addAttribute("user", user);
-        model.addAttribute("fullResults", testService.getTestResult());
+        model.addAttribute("questions", testService.getFullQuestions());
+        model.addAttribute("result", testService.getTestResult());
         return "result_page";
     }
 

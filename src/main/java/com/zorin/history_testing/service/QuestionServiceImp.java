@@ -40,7 +40,7 @@ public class QuestionServiceImp implements QuestionService{
     @Override
     public List<FullQuestion> getRandomQuestions() {
         List<Question> allQuestions =new ArrayList<>();
-                questionRep.findAll().forEach(allQuestions::add);
+        questionRep.findAll().forEach(allQuestions::add);
         Collections.shuffle(allQuestions);
         List<FullQuestion> randomQuestions = allQuestions.stream().limit(5).map(FullQuestion::new).collect(Collectors.toList());
         testService.setFullQuestions(randomQuestions);

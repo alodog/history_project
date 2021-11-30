@@ -54,11 +54,11 @@ public class UserService implements UserDetailsService {
         userRep.save(userFromDB);
     }
 
-    public List<User> listUsersBySurname(List<UserInfo> usersInfo){
-        List<User> users = new ArrayList<>();
-        for (UserInfo userInfo : usersInfo) {
-            users.add(userRep.findByUserInfo(userInfo));
-        }
+    public List<User> listUsersBySurname(String request){
+        List<UserInfo> userInfoList = new ArrayList<>();
+        userInfoRep.findAllBySurname(request).forEach(userInfoList::add);
+        List<Integer> listId = userInfoList.stream().map(UserInfo::getId).collect(Collectors.toList());
+        List<User> users = new ArrayList<>(userRep.findAll().stream().filter(user -> user.getUserInfo().getSurname().equals(request)).collect(Collectors.toList()));
         return users;
     }
 

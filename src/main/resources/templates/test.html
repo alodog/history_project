@@ -14,18 +14,33 @@
 <main class="container my-5">
 
     <form th:method="POST" th:action="@{/test}" th:object="${result}">
-        <div th:each="question, iter:${questions}">
-            <h4 th:text="${question.questionText}">VALUE</h4>
-            <br>
-            <div th:each="answer : ${question.answers}">
-                <input type="radio" id="a" name="a"  th:value="${answer}" th:field="${result.answers[__${iter.index}__]}"/>
-                <label for="a" th:text="${answer}">VALUE</label>
-            </div>
-            <br><br>
-        </div>
 
-<!--        <input hidden th:value="questions"  th:field="*{fullQuestions}" name="questions">-->
-        <input type="submit" value="Submit"/>
+        <table class="table table-bordered table-striped table-hover align-middle table-sm "  >
+            <!---->
+            <thead thead class="table-dark">
+            <tr class="text-center">
+                <th style="width: 10%">#</th>
+                <th style="width: 30%">Вопрос</th>
+                <th style="width: 60%">Варианты ответов</th>
+            </tr>
+            </thead>
+
+            <tbody th:each="question, iter:${questions}">
+            <tr>
+                <td class="text-center" th:text="${iter.count}"></td>
+                <td class="text-center" th:text="${question.questionText}"></td>
+                <td >
+                    <div th:each="answer : ${question.answers}">
+                    <input type="radio" id="a" name="a"  th:value="${answer}" th:field="${result.answers[__${iter.index}__]}"/>
+                    <label for="a" th:text="${answer}">VALUE</label>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+
+        <input class="btn btn-primary my-2 col-md-2" type="submit" value="Ответить"/>
     </form>
 
 </main>

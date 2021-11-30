@@ -11,44 +11,64 @@
 <body>
 <header th:insert="blocks/header.html :: header" class="container"/>
 
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--    <link rel="stylesheet" href="css/style.css">-->
+    <title>Профиль</title>
+</head>
+<body>
+<header th:insert="blocks/header.html :: header" class="container"/>
 <main class="my-5">
 
     <form th:method="POST" th:action="@{/questions/{id}(id=${question.getId()})}" th:object="${question}">
-        <div>
-            <label for="Question"> Please enter Question :  </label>
-            <input type="text" th:field="*{questionText}" id="Question" th:value="*{questionText}">
+
+        <div class="mb-3 ms-3 col-sm-9 d-flex justify-content-center">
+            <label for="Question" class="form-label fw-bold col-sm-2 align-self-center"> Вопрос :  </label>
+            <input type="text" class="form-control ms-1" th:field="*{questionText}" id="Question" th:value="*{questionText}" required>
             <div th:if="${#fields.hasErrors('questionText')}" th:errors="*{questionText}"></div>
         </div>
 
-        <div>
-            <label for="TrueAnswer"> Please enter true answer  :  </label>
-            <input type="text" th:field="*{trueAnswer}" id="TrueAnswer" th:value="*{trueAnswer}">
+
+        <div class="mb-3 ms-3 col-sm-9 d-flex justify-content-center">
+            <label for="TrueAnswer" class="form-label fw-bold col-sm-2 align-self-center"> Введите верный ответ:  </label>
+            <input type="text" class="form-control ms-1" th:field="*{trueAnswer}" id="TrueAnswer" th:value="*{trueAnswer}" />
             <div th:if="${#fields.hasErrors('trueAnswer')}" th:errors="*{trueAnswer}"></div>
         </div>
 
-        <div>
-            <label for="WrongAnswer0"> Please enter true answer  :  </label>
-            <input type="text" th:field="*{wrongAnswer0}" id="WrongAnswer0" th:value="*{wrongAnswer0}">
+        <div class="mb-3 ms-3 col-sm-9 d-flex justify-content-center">
+            <label for="wrongAnswer0" class="form-label fw-bold col-sm-2 align-self-center"> Неправильный ответ №1:  </label>
+            <input type="text" class="form-control ms-1" th:field="*{wrongAnswer0}" id="wrongAnswer0" th:value="*{wrongAnswer0}" required>
             <div th:if="${#fields.hasErrors('wrongAnswer0')}" th:errors="*{wrongAnswer0}"></div>
         </div>
 
-        <div>
-            <label for="WrongAnswer1"> Please enter true answer  :  </label>
-            <input type="text" th:field="*{wrongAnswer1}" id="WrongAnswer1" placeholder="WrongAnswer1" th:value="*{wrongAnswer1}">
+        <div class="mb-3 ms-3 col-sm-9 d-flex justify-content-center align-self-center">
+            <label for="wrongAnswer1" class="form-label fw-bold col-sm-2 align-self-center"> Неправильный ответ №2:  </label>
+            <input type="text" class="form-control ms-1" th:field="*{wrongAnswer1}" id="wrongAnswer1" th:value="*{wrongAnswer1}" required>
             <div th:if="${#fields.hasErrors('wrongAnswer1')}" th:errors="*{wrongAnswer1}"></div>
         </div>
 
-        <div>
-            <label for="WrongAnswer2"> Please enter true answer  :  </label>
-            <input type="text" th:field="*{wrongAnswer2}" id="WrongAnswer2" th:value="*{wrongAnswer2}">
+        <div class="mb-3 ms-3 col-sm-9 d-flex justify-content-center">
+            <label for="wrongAnswer2" class="form-label fw-bold col-sm-2 align-self-center"> Неправильный ответ №3:  </label>
+            <input type="text" class="form-control ms-1" th:field="*{wrongAnswer2}" id="wrongAnswer2" th:value="*{wrongAnswer2}" required>
             <div th:if="${#fields.hasErrors('wrongAnswer2')}" th:errors="*{wrongAnswer2}"></div>
         </div>
 
-        <button type="submit">Save</button>
-    </form>
 
+        <div class="d-flex ms-5">
+            <input type="submit" value="Сохранить изменения" class="btn btn-primary"/>
+        </div>
+
+    </form>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
