@@ -20,5 +20,4 @@ public class FullUsersTestResult {
     public FullUsersTestResult() {
     }
 
-
 }

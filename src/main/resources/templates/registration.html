@@ -9,7 +9,7 @@
     <!--Fontawesome CDN-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <title>Login page </title>
+    <title>Регистрация </title>
 
 </head>
 
@@ -24,9 +24,7 @@
                 <div class="text-danger" th:if="${param.error}">
                     Invalid username or password.
                 </div>
-
                 <form class="form" th:action="@{/registration}" method="post">
-
                     <div class="row input-group form-group">
                         <div class="col-md-6">
                             <label for="Username" class="form-label" style="color: rgb(223, 213, 213);">Имя пользователя:</label>
@@ -64,7 +62,6 @@
                     <div class="d-flex justify-content-around my-4">
                         <input type="submit" value="Зарегистрироваться" class="btn btn-info"/>
                     </div>
-
                 </form>
             </div>
         </div>

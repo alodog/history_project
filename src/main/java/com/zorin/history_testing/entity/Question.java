@@ -19,7 +19,6 @@ public class Question {
     @Column(name = "id")
     private int id;
 
-
     @Column(name = "question_text")
     @NotBlank(message = "Поле не должно быть пустым!")
     private String questionText;

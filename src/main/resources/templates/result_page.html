@@ -10,42 +10,36 @@
 <body>
 <header th:insert="blocks/header.html :: header"/>
 
-
 <main class="container my-5">
     <p class="text fs-2 d-flex justify-content-center" th:text="${user.result}"></p>
     <table class="table table-bordered table-striped table-hover align-middle table-sm text-center"  >
         <thead thead class="table-dark">
-        <tr>
-            <th style="width: 5%">#</th>
-            <th style="width: 40%">Вопрос</th>
-            <th style="width: 20%">Ваш ответ</th>
-            <th style="width: 20%">Правильный ответ</th>
-            <th style="width: 15%">Результат</th>
-        </tr>
+            <tr>
+                <th style="width: 5%">#</th>
+                <th style="width: 40%">Вопрос</th>
+                <th style="width: 20%">Ваш ответ</th>
+                <th style="width: 20%">Правильный ответ</th>
+                <th style="width: 15%">Результат</th>
+            </tr>
         </thead>
-
         <tbody th:each="question, iter:${questions}">
-
-        <tr class="table-success" th:if="${result.answers.get(iter.index)} == ${question.trueAnswer}">
-            <td th:text="${iter.count}"></td>
-            <td th:text="${question.questionText}"></td>
-            <td th:text="${result.answers.get(iter.index)}"></td>
-            <td th:text="${question.trueAnswer}"></td>
-            <td>Ответ верный!</td>
-        </tr>
-
-        <tr class="table-danger" th:unless="${result.answers.get(iter.index)} == ${question.trueAnswer}">
-            <td th:text="${iter.count}"></td>
-            <td th:text="${question.questionText}"></td>
-            <td th:text="${result.answers.get(iter.index)}"></td>
-            <td th:text="${question.trueAnswer}"></td>
-            <td>Ответ неверен!</td>
-        </tr>
+            <tr class="table-success" th:if="${result.answers.get(iter.index)} == ${question.trueAnswer}">
+                <td th:text="${iter.count}"></td>
+                <td th:text="${question.questionText}"></td>
+                <td th:text="${result.answers.get(iter.index)}"></td>
+                <td th:text="${question.trueAnswer}"></td>
+                <td>Ответ верный!</td>
+            </tr>
+            <tr class="table-danger" th:unless="${result.answers.get(iter.index)} == ${question.trueAnswer}">
+                <td th:text="${iter.count}"></td>
+                <td th:text="${question.questionText}"></td>
+                <td th:text="${result.answers.get(iter.index)}"></td>
+                <td th:text="${question.trueAnswer}"></td>
+                <td>Ответ неверен!</td>
+            </tr>
         </tbody>
     </table>
-
     <a class="btn btn-success ms-2 my-2 col-ms-2" th:href="@{/}">Вернуться на главную</a>
-
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

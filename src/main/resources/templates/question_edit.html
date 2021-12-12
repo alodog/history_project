@@ -18,14 +18,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!--    <link rel="stylesheet" href="css/style.css">-->
-    <title>Профиль</title>
+    <title>Редактирование вопроса</title>
 </head>
 <body>
 <header th:insert="blocks/header.html :: header" class="container"/>
 <main class="my-5">
 
-    <form th:method="POST" th:action="@{/questions/{id}(id=${question.getId()})}" th:object="${question}">
+    <form th:method="PATCH" th:action="@{/questions/{id}(id=${question.getId()})}" th:object="${question}">
 
         <div class="mb-3 ms-3 col-sm-9 d-flex justify-content-center">
             <label for="Question" class="form-label fw-bold col-sm-2 align-self-center"> Вопрос :  </label>

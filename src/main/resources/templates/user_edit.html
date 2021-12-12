@@ -5,35 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!--    <link rel="stylesheet" href="css/style.css">-->
     <title>Редактор пользователя</title>
 </head>
 <body>
 <header th:insert="blocks/header.html :: header" class="container"/>
 
 <main class="my-5">
-    <form method="post" th:action="@{/admin/users/edit/{id}(id=${user.getId()})}">
-
-            <div class="col-md-4 ms-3 my-6">
+    <form th:method="PATCH" th:action="@{/admins/users/{id}(id=${user.getId()})}">
+        <div class="col-md-4 ms-3 my-6">
                 <p th:if="${message}" th:text="${message}">TEXT</p>
                 <label for="Username" class="form-label fw-bold")>Username:</label>
                 <input type="text" class="form-control" id="Username" th:value="${user.username}" th:field="${user.username}"
                            aria-label="Username" aria-describedby="basic-addon1" required>
                 <div class="text-danger" th:if="${#fields.hasErrors('user.username')}" th:errors="${user.username}"></div>
             </div>
-
         <div class="col-md-4 ms-3">
             <label for="firstName" class="form-label fw-bold"> Имя:  </label>
             <input type="text" class="form-control" th:field="${user.userInfo.firstName}" id="firstName" th:value="${user.userInfo.firstName}" required>
             <div class="text-danger" th:if="${#fields.hasErrors('user.userInfo.firstName')}" th:errors="${user.userInfo.firstName}"></div>
         </div>
-
         <div class="col-md-4 ms-3">
             <label for="surname" class="form-label fw-bold"> Фамилия :  </label>
             <input type="text" class="form-control" th:field="${user.userInfo.surname}" id="surname" th:value="${user.userInfo.surname}" required>
             <div class="text-danger" th:if="${#fields.hasErrors('user.userInfo.surname')}" th:errors="${user.userInfo.surname}"></div>
         </div>
-
         <div sec:authorize="hasAuthority('MAINADMIN')">
             <p class="fw-bold ms-3 my-1" >Выберите роли:</p>
             <div class="form-check col-md-4 ms-3"  th:each="role : ${T(com.zorin.history_testing.entity.Role).values()}">
@@ -42,15 +37,11 @@
             </div>
             <div class="text-danger" th:if="${#fields.hasErrors('user.roles')}" th:errors="${user.roles}"></div>
         </div>
-
-
         <input type="hidden" th:value="${user.password}" th:field="${user.password}" name="password">
         <input type="hidden" th:value="*{user.id}" th:field="*{user.id}" name="userId">
-
         <div class=" ms-5 my-5">
             <input type="submit" value="Сохранить изменения" class="btn btn-primary"/>
         </div>
-
     </form>
 </main>
 

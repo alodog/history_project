@@ -12,9 +12,7 @@
     <title>Login page </title>
 
 </head>
-
     <body>
-
         <div class="container" >
             <div class="d-flex justify-content-center my-5 py-5 h-100 ">
                 <div class="card card-login">
@@ -22,13 +20,11 @@
                         <h3>Sign In</h3>
                     </div>
                     <div class="card-body">
-
                         <div class="text-danger" th:if="${param.error}">
                             Неправильный логин или пароль!
                         </div>
 
                         <form class="form" th:action="@{/login}" method="post">
-
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -54,6 +50,4 @@
             </div>
         </div>
     </body>
-
-
 </html>

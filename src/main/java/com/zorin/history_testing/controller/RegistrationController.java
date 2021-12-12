@@ -23,7 +23,6 @@ public class RegistrationController {
 
     @Autowired
     private UserRep userRep;
-
     @Autowired
     private UserInfoRep userInfoRep;
 

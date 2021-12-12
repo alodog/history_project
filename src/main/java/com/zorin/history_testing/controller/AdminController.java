@@ -1,6 +1,5 @@
 package com.zorin.history_testing.controller;
 
-import com.zorin.history_testing.dao.UserInfoRep;
 import com.zorin.history_testing.dao.UserRep;
 import com.zorin.history_testing.entity.Role;
 import com.zorin.history_testing.entity.User;
@@ -19,7 +18,7 @@ import java.util.List;
  * @author Zorin Sergey
  */
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admins")
 @PreAuthorize("hasAnyAuthority('ADMIN', 'MAINADMIN')")
 public class AdminController {
 
@@ -27,33 +26,18 @@ public class AdminController {
     private UserRep userRep;
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserInfoRep userInfoRep;
-
-    @GetMapping
-    public String mainAdminPage(){
-        return "admin";
-    }
 
     @GetMapping("/users")
-    public String userList( @RequestParam(value = "research", defaultValue = "") String research, Model model){
-
-
+    public String usersList(@RequestParam(value = "research", defaultValue = "") String research, Model model){
         if(research.isEmpty()){
             model.addAttribute("users", userRep.findAll());
-            return "user_list";
+            return "users_list";
         }
         List<User> usersBySurname = userService.listUsersBySurname(research);
         model.addAttribute("users", usersBySurname);
         model.addAttribute("research", research);
-        return "user_list";
+        return "users_list";
     }
-
-//    @GetMapping("/users/find")
-//    public String searchUsersBySurname(@RequestParam("research") String research, Model model){
-
-//    }
-
 
     @GetMapping("/users/{id}")
     public String userEditForm(@PathVariable("id") int id, Model model){
@@ -63,13 +47,13 @@ public class AdminController {
         return "user_edit";
     }
 
-    @PostMapping("/users/delete/{id}")
+    @DeleteMapping("/users/{id}")
     public String deleteUser(@PathVariable("id") int id ){
         userRep.deleteById(id);
-        return "redirect:/admin/users";
+        return "redirect:/admins/users";
     }
 
-    @PostMapping ("/users/edit/{id}")
+    @PatchMapping ("/users/{id}")
     public String updateUser(@ModelAttribute ("user") @Valid User user,
                              BindingResult bindingResult,
                              @PathVariable("id") int id,
@@ -84,9 +68,7 @@ public class AdminController {
             }
         }
         userService.updateUser(id, user);
-        return "redirect:/admin/users";
+        return "redirect:/admins/users";
     }
-
-
 }
 

@@ -20,7 +20,6 @@
             <a href="/test" class="nav-link">Пройти тест</a>
           </li>
 
-
           <div >
             <li class="nav-item dropdown" sec:authorize="hasAnyAuthority('ADMIN', 'MAINADMIN')">
               <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -28,7 +27,7 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                 <li>
-                  <a class="dropdown-item" href="/admin/users">Данные пользователей</a>
+                  <a class="dropdown-item" href="/admins/users">Данные пользователей</a>
                 </li>
                 <li><a class="dropdown-item" href="/questions/add">Добавить вопрос</a></li>
                 <li><a class="dropdown-item" href="/questions">Список всех вопросов</a></li>
@@ -41,14 +40,8 @@
           <form th:action="@{/logout}" method="post">
             <input type="submit" class="btn btn-outline-danger ms-3" value="Sign Out" />
           </form>
-          <!--<button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign in</button>-->
-          <!--                    <button class="btn btn-outline-danger ms-3" ">Sign out</button>-->
         </div>
-
-
       </div>
-
     </div>
   </nav>
-
 </div>

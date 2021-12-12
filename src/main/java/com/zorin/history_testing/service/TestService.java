@@ -17,4 +17,5 @@ public interface TestService {
     FullUsersTestResult getTestResult();
     List<FullQuestion> getFullQuestions();
     void setFullQuestions(List<FullQuestion> fullQuestions);
+
 }

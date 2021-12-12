@@ -36,7 +36,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRep.findByUsername(username);
     }
-    public User getCurrentUser(Principal principal) {
+    public User getCurrentUser() {
         return ((User) SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getPrincipal());
@@ -57,8 +57,9 @@ public class UserService implements UserDetailsService {
     public List<User> listUsersBySurname(String request){
         List<UserInfo> userInfoList = new ArrayList<>();
         userInfoRep.findAllBySurname(request).forEach(userInfoList::add);
-        List<Integer> listId = userInfoList.stream().map(UserInfo::getId).collect(Collectors.toList());
-        List<User> users = new ArrayList<>(userRep.findAll().stream().filter(user -> user.getUserInfo().getSurname().equals(request)).collect(Collectors.toList()));
+        List<User> users = new ArrayList<>(userRep.findAll().stream().
+                filter(user -> user.getUserInfo().getSurname().equals(request))
+                .collect(Collectors.toList()));
         return users;
     }
 

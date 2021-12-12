@@ -47,7 +47,6 @@ public class QuestionController {
         return "redirect:/questions";
     }
 
-
     @GetMapping("/{id}")
     public String questionEditForm(@PathVariable("id")int id, Model model){
         Question question = questionRep.findById(id).get();
@@ -55,8 +54,8 @@ public class QuestionController {
         return "question_edit";
     }
 
-    @PostMapping ("/{id}")
-    public String updateUser(@ModelAttribute ("question") @Valid Question question,
+    @PatchMapping ("/{id}")
+    public String updateQuestion(@ModelAttribute ("question") @Valid Question question,
                              BindingResult bindingResult,
                              @PathVariable("id") int id) {
         if(bindingResult.hasErrors()){
@@ -67,7 +66,7 @@ public class QuestionController {
         return "redirect:/questions";
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable("id") int id ){
         questionRep.deleteById(id);
         return "redirect:/questions";

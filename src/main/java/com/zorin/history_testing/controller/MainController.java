@@ -2,29 +2,17 @@ package com.zorin.history_testing.controller;
 
 import com.zorin.history_testing.any_classes.FullUsersTestResult;
 import com.zorin.history_testing.dao.UserRep;
-import com.zorin.history_testing.entity.Question;
 import com.zorin.history_testing.entity.User;
 import com.zorin.history_testing.service.QuestionService;
 import com.zorin.history_testing.service.TestService;
 import com.zorin.history_testing.service.UserService;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.List;
 
 /**
  * @author Zorin Sergey
@@ -33,8 +21,6 @@ import java.util.List;
 @Controller
 public class MainController {
 
-//    @Autowired
-//    private UserRep userRep;
     @Autowired
     private UserService userService;
     @Autowired
@@ -45,16 +31,14 @@ public class MainController {
     private UserRep userRep;
 
     @GetMapping("/")
-    public String starterPage(Model model){
-        model.addAttribute("research", "");
+    public String starterPage(){
         return "starter_page";
     }
 
     @GetMapping("/profile")
     public String profile(Model model, Principal principal){
-        User currentUser =  userService.getCurrentUser(principal);
+        User currentUser =  userService.getCurrentUser();
         User currentUserFromDB = userRep.getById(currentUser.getId());
-
         if (currentUserFromDB.getResult()==null){
             currentUserFromDB.setResult("Вы еще не проходили тест!");
         }
@@ -64,7 +48,6 @@ public class MainController {
 
     @GetMapping("/test")
     public String startTest(Model model){
-
         model.addAttribute("result", new FullUsersTestResult());
         model.addAttribute("questions", questionService.getRandomQuestions());
         return "test";
@@ -72,14 +55,14 @@ public class MainController {
 
     @PostMapping("/test")
     public String testEnded(@ModelAttribute("result") FullUsersTestResult  fullUsersTestResult, Principal principal){
-        User user =  userService.getCurrentUser(principal);
+        User user =  userService.getCurrentUser();
         testService.save(fullUsersTestResult, user);
         return "redirect:/result";
     }
 
     @GetMapping("/result")
     public String getResultPage(Model model, Principal principal){
-        User user =  userService.getCurrentUser(principal);
+        User user =  userService.getCurrentUser();
         if (user.getResult()==null){
             user.setResult("Вы еще не проходили тест!");
         }
@@ -89,13 +72,13 @@ public class MainController {
         return "result_page";
     }
 
-    @PostMapping ("/profile")
+    @PatchMapping("/profile")
     public String updateProfile(@ModelAttribute ("user") @Valid User user,
                              BindingResult bindingResult, Principal principal, Model model) {
         if(bindingResult.hasErrors()){
             return "profile";
         }
-        int id = userService.getCurrentUser(principal).getId();
+        int id = userService.getCurrentUser().getId();
         if(!user.getUsername().equals(userRep.getById(id).getUsername())){
             if((userRep.findByUsername(user.getUsername()) != null)){
                 model.addAttribute("message", "Это имя уже занято другим пользователем");
@@ -103,7 +86,6 @@ public class MainController {
             }
         }
         userService.updateProfile(id, user);
-        return "redirect:/profile";
+        return "redirect:/";
     }
-
 }

@@ -27,6 +27,4 @@ public class UserInfo {
     @Size(min = 2, max = 50, message = "Длина фамилии должна быть от 1 до 50 символов")
     private String surname;
 
-
-
 }

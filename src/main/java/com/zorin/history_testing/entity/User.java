@@ -50,12 +50,10 @@ public class User implements UserDetails {
         roles= Collections.singleton(Role.USER);
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
     }
-
 
     @Override
     public boolean isAccountNonExpired() {
